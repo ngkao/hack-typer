@@ -8,9 +8,18 @@
 
     &__box {
         margin: 0;
-        height: 100px;
         width: 600px;
         border: 1px solid black;
-
     }
+
+    &__line {
+        line-height: 1.25rem;
+        font-size: 1rem;
+        margin: 0;
+
+        &--selected {
+            background-color: lightblue;
+        }
+    }
+
 }
