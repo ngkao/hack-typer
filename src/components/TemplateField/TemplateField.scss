@@ -1,0 +1,16 @@
+.template {
+
+    &__heading {
+        margin: 0;
+        font-size: 20px;
+    }
+
+
+    &__box {
+        margin: 0;
+        height: 100px;
+        width: 600px;
+        border: 1px solid black;
+
+    }
+}

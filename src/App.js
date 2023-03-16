@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import InputField from './components/InputField/InputField';
+import ScoreTable from './components/ScoreTable/ScoreTable';
+import TemplateField from './components/TemplateField/TemplateField';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="header">
+          <h1>NAME</h1>
+      </section>
+      <section className="score">
+          <h2>SCORE</h2>
+      </section>
+      <TemplateField />
+      <InputField />
+      <ScoreTable />
     </div>
   );
 }

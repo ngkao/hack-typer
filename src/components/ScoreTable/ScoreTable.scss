@@ -1,0 +1,11 @@
+.score {
+   
+
+    &__item {
+        outline: 1px solid greenyellow;
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        padding: 0 10px;
+    }
+}
