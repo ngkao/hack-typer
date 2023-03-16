@@ -2,7 +2,7 @@ import ScoreTableItem from '../ScoreTableItem/ScoreTableItem';
 import "./ScoreTable.scss"
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import InputField from '../InputField/InputField';
 
 const ScoreTable = () => {
 
@@ -15,6 +15,7 @@ const ScoreTable = () => {
             .then((response) => {
                 setScoreData(response.data)
             })
+            .catch((error) => console.log(error))
     }
 
     useEffect(() => {
@@ -26,18 +27,23 @@ const ScoreTable = () => {
     }
 
     return (
-        <div className='score'>
-            <h2>Score Table</h2>
-            {scoreData.sort((a,b) => b.score -a.score).map(scoreItem => {
-                return (
-                    <ScoreTableItem
-                    key = {scoreItem.id}
-                    name ={scoreItem.name}
-                    score ={scoreItem.score}
-                    />
-                )
-            })}
-        </div>
+        <>
+            <InputField
+                fetchData={fetchData}
+            />
+            <div className='score'>
+                <h2>Score Table</h2>
+                {scoreData.sort((a,b) => b.score -a.score).map(scoreItem => {
+                    return (
+                        <ScoreTableItem
+                        key = {scoreItem.id}
+                        name ={scoreItem.name}
+                        score ={scoreItem.score}
+                        />
+                    )
+                })}
+            </div>
+        </>
     );
 };
 
