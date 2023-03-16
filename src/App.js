@@ -4,6 +4,12 @@ import ScoreTable from './components/ScoreTable/ScoreTable';
 import TemplateField from './components/TemplateField/TemplateField';
 
 function App() {
+
+
+
+
+
+  
   return (
     <div className="App">
       <section className="header">
@@ -13,8 +19,8 @@ function App() {
           <h2>SCORE</h2>
       </section>
       <TemplateField />
-      <InputField />
-      <ScoreTable />
+      <ScoreTable/>
+      {/* <InputField /> */}
     </div>
   );
 }
