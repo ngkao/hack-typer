@@ -23,7 +23,7 @@ const ScoreTable = () => {
     },[])
 
     if (!scoreData) {
-        return <h3>Loading..</h3>
+        return <h3>Loading hae..</h3>
     }
 
     return (
