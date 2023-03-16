@@ -36,6 +36,7 @@ const ScoreTable = () => {
                 {scoreData.sort((a,b) => b.score -a.score).map(scoreItem => {
                     return (
                         <ScoreTableItem
+                        key = {scoreItem.id}
                         name ={scoreItem.name}
                         score ={scoreItem.score}
                         />
