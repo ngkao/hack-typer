@@ -1,5 +1,5 @@
 import "./InputField.scss"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Editor from "../Editor/Editor";
 
@@ -9,6 +9,7 @@ const InputField = ({fetchData, numWords}) => {
     const [hasStarted, setHasStarted] = useState(false)
     const [startTime, setStartTime] = useState(null)
     const [timeTaken, setTimeTaken] = useState(null)
+    const [score, setScore] = useState(null)
 
     // console.log(input)
 
@@ -21,29 +22,38 @@ const InputField = ({fetchData, numWords}) => {
             setTimeTaken(null)
             setHasStarted(true)
         } else {
-            // On the Submit will trigger the score calc
+            event.target.reset()
+            setTimeTaken(Math.round((Date.now() - startTime)/10)/100)
+            setHasStarted(false)
+        }        
+    }
+
+    function publishScore() {
+        if (score) {
             axios.post(`http://localhost:8080/scores`,
             {
                 name: "NG",
-                score: 100
+                score: score
             })
             .then(() => {
                 console.log("POST Request")
                 fetchData()
-                event.target.reset()
             })
             .catch((error) => console.log(error))
-            event.target.reset()
-            setTimeTaken(Math.round((Date.now() - startTime)/10)/100)
-            setHasStarted(false)
         }
-
-        
     }
+
+    useEffect((() => {
+        if (timeTaken) {
+            setScore(Math.round(numWords/timeTaken * 60))
+        } else {
+            setScore(null)
+        }
+    }), [timeTaken, numWords])
 
       // Editor
     const [editor, setEditor] = useState('');
-    console.log("HTML", editor[0])
+    // console.log("HTML", editor[0])
 
     return (
             <section className="input">
@@ -65,6 +75,7 @@ const InputField = ({fetchData, numWords}) => {
                         value={editor}
                     />
                     <button className='input__btn'>START/STOP</button>
+                    <button onClick={publishScore} type="button" className='input__btn'>PUBLISH SCORE</button>
                 </form>
                 {(hasStarted)&&
                 <>
@@ -73,7 +84,7 @@ const InputField = ({fetchData, numWords}) => {
                 {(timeTaken)&&
                 <>
                     <p className="input__time">Time taken: {timeTaken} sec</p>
-                    <p className="input__time input__time--bottom">{`Score (WPM): ${Math.round(numWords/timeTaken * 60)}`}</p>
+                    <p className="input__time input__time--bottom">{score && `Score (WPM): ${score}`}</p>
                 </>
                 }
             </section>
