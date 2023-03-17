@@ -38,12 +38,19 @@ const TemplateField = () => {
     }
 
     return (
-        <section className="template">
-            <h2 className='template__heading'>TYPE THIS PROGRAM</h2>
-            <article className='template__box'>
-            {giveLines()}
-            </article>
-        </section>
+        <>        
+            <section className="score">
+                <h2 className="score__heading">SCORE</h2>
+                <p className="score__number">100</p>
+            </section>
+            <section className="template">
+                <h2 className='template__heading'>TYPE THIS PROGRAM</h2>
+                <article className='template__box'>
+                {giveLines()}
+                </article>
+            </section>
+        </>
+
     );
 };
 

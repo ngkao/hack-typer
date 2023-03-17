@@ -1,5 +1,10 @@
 .input {
     height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
 
     &__heading {
         font-size: 20px;
@@ -15,10 +20,28 @@
     &__box {
         height: 100px;
         width: 600px;
+        resize: none;
+        padding: 1rem;
+        font-family: "Golos";
+        font-weight: 400;
+        font-size: 16px;
+        box-shadow: -10px 10px 0px 0px rgba(33,33,33,0.4);
+        outline: 1px solid black;
+        border: 1px solid black;
     }
 
     &__btn {
         height: 40px;
         margin-top: 20px;
+        box-shadow: -10px 10px 0px 0px rgba(33,33,33,1);
+        outline: 1px solid black;
+        border: 1px solid black;
+        cursor: pointer;
+
+        &:hover {
+            transition: 0.5s;
+            background-color: black;
+            color: white;
+        }
     }
 }

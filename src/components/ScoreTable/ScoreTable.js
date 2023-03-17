@@ -4,44 +4,36 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import InputField from '../InputField/InputField';
 
-const ScoreTable = () => {
+const ScoreTable = ({scoreData}) => {
 
-    const [scoreData, setScoreData] = useState(null)
-    // const [names, setName] = useState(null);
-    // const [scores, setScore] = useState(null);
 
-    const fetchData = () => {
-        axios.get(`http://localhost:8080/scores`)
-            .then((response) => {
-                setScoreData(response.data)
-            })
-            .catch((error) => console.log(error))
-    }
+    // //Hide and Show Score Table
+    // const [show, setShow] = useState(true);
 
-    useEffect(() => {
-        fetchData();
-    },[])
-
-    if (!scoreData) {
-        return <h3>Loading..</h3>
-    }
 
     return (
         <>
-            <InputField
-                fetchData={fetchData}
-            />
-            <div className='score'>
-                <h2>Score Table</h2>
-                {scoreData.sort((a,b) => b.score -a.score).map(scoreItem => {
-                    return (
-                        <ScoreTableItem
-                        key = {scoreItem.id}
-                        name ={scoreItem.name}
-                        score ={scoreItem.score}
-                        />
-                    )
-                })}
+            {/* <div className="toggle">
+                <button onClick={()=>setShow(true)}>SHOW RESULTS</button>
+                <button onClick={()=>setShow(false)}>HIDE RESULTS</button>
+            </div> */}
+            <div className='score-table'>
+                <h2 className="score-table__title">Score Table</h2>
+                <div className="score-table__outline">
+                    <div className="score-table__heading-ctr">
+                        <h3>NAME</h3>
+                        <h3>SCORE</h3>
+                    </div>
+                    {scoreData.sort((a,b) => b.score -a.score).map(scoreItem => {
+                            return (
+                                <ScoreTableItem
+                                key = {scoreItem.id}
+                                name ={scoreItem.name}
+                                score ={scoreItem.score}
+                                />
+                            )
+                    })}
+                </div>
             </div>
         </>
     );

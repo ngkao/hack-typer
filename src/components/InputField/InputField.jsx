@@ -24,7 +24,7 @@ const InputField = ({fetchData}) => {
                 event.target.reset()
             })
             .catch((error) => console.log(error))
- 
+            event.target.reset()
     }
 
 
@@ -36,7 +36,7 @@ const InputField = ({fetchData}) => {
                     className='input__form'
                     onSubmit={handleSubmit}
                 >
-                    <label className='input__heading'>Input Field</label>
+                    <label className='input__heading'>INPUT FIELD</label>
                     <textarea 
                         onChange={(event) => {setInput(event.target.value)}} 
                         value={input} 
