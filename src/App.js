@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 
+
+
 function App() {
 
   const [scoreData, setScoreData] = useState(null)
@@ -24,7 +26,7 @@ function App() {
 
 
    //Hide and Show Score Table
-   const [show, setShow] = useState(true);
+   const [show, setShow] = useState(false);
 
    const scrollToTop = () => {
     window.scrollTo({
