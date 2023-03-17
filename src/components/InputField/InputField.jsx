@@ -3,13 +3,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Editor from "../Editor/Editor";
 
-const InputField = ({fetchData, numWords}) => {
+const InputField = ({fetchData, numWords, templates, setShow}) => {
 
     // const [input, setInput] = useState();
     const [hasStarted, setHasStarted] = useState(false)
     const [startTime, setStartTime] = useState(null)
     const [timeTaken, setTimeTaken] = useState(null)
     const [score, setScore] = useState(null)
+    const [borderClass, setBorderClass] = useState('input__btn')
+
+      // Editor
+    const [editor, setEditor] = useState('');
+  
+    let totalChar = templates.lines.join("")
+
+    let templateChar = totalChar.replaceAll(' ','')
+
+    console.log("TemplateCount", templateChar.length)
+    let editorChar = ((editor.replaceAll(' ','')).length) - (templates.lines.length - 1)
+    console.log("editorChar", editorChar)
 
     // console.log(input)
 
@@ -21,23 +33,36 @@ const InputField = ({fetchData, numWords}) => {
             setStartTime(Date.now())
             setTimeTaken(null)
             setHasStarted(true)
+            // setBorderClass('input__btn')
         } else {
-            event.target.reset()
-            setTimeTaken(Math.round((Date.now() - startTime)/10)/100)
-            setHasStarted(false)
+            if (templateChar.length===editorChar) {
+                event.target.reset()
+                setTimeTaken(Math.round((Date.now() - startTime)/10)/100)
+                setHasStarted(false)
+                setEditor('')
+                console.log('valid')
+                setBorderClass('input__btn')
+            } else {
+                console.log('invalid')
+                setBorderClass('input__btn input__btn--wrong')
+                setTimeout(console.log(borderClass), 100)
+            }
         }        
     }
 
-    function publishScore() {
+    function publishScore(event) {
+        event.preventDefault()
+        const newName = event.target.name.value
         if (score) {
             axios.post(`http://localhost:8080/scores`,
             {
-                name: "NG",
+                name: newName,
                 score: score
             })
             .then(() => {
                 console.log("POST Request")
                 fetchData()
+                setShow(true)
             })
             .catch((error) => console.log(error))
         }
@@ -66,9 +91,7 @@ const InputField = ({fetchData, numWords}) => {
         }
     }), [timeTaken, numWords])
 
-      // Editor
-    const [editor, setEditor] = useState('');
-    // console.log("HTML", editor[0])
+    
 
     return (
             <section className="input">
@@ -89,8 +112,20 @@ const InputField = ({fetchData, numWords}) => {
                         onChange={setEditor}
                         value={editor}
                     />
-                    <button className='input__btn'>START/STOP</button>
-                    <button onClick={publishScore} type="button" className='input__btn'>PUBLISH SCORE</button>
+                    <button className={borderClass}>START/STOP</button>
+                    
+                    
+                </form>
+
+                <form onSubmit={publishScore} className="input__btn-box">
+                    <input 
+                        className="input__name-field" 
+                        name='name' 
+                        type='text' 
+                        placeholder="Enter name" 
+                        required>
+                    </input>
+                    <button className='input__btn'>PUBLISH SCORE</button>
                     <button onClick={resetScore} type="button" className='input__btn'>RESET SCORES</button>
                 </form>
                 {(hasStarted)&&

@@ -1,7 +1,7 @@
 import "./TemplateField.scss"
 // import { useState } from 'react'
 
-const TemplateField = ({templates}) => {
+const TemplateField = ({templates, tempIndex, cycleTemplate}) => {
 
     // const [currentLine, setCurrentLine] = useState(0)
 
@@ -10,7 +10,7 @@ const TemplateField = ({templates}) => {
         // console.log(templates)
         
         const lines = []
-        let templateLines = templates[1].lines
+        let templateLines = templates[tempIndex].lines
         for (let i=0; i<templateLines.length; i++) {
             if (i===0) {
                 lines.push(<p key={i} className="template__line">{templateLines[i]}</p>)
@@ -29,7 +29,8 @@ const TemplateField = ({templates}) => {
     }
 
     return (
-        <>        
+        <>  
+            <button onClick={cycleTemplate} className='input__btn'>NEXT TEMPLATE</button>
             <section className="score">
                 <h2 className="score__heading">SCORE</h2>
                 <p className="score__number">100</p>
