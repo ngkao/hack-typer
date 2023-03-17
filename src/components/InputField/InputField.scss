@@ -16,9 +16,6 @@
         flex-direction: column;
     }
 
-    &__editor {
-        
-    }
 
     &__box {
         height: 100px;
@@ -66,10 +63,14 @@
         &--wrong {
             border: 0.25rem solid red;
         }
+
+        &--next {
+            margin-left: 31rem;
+        }
     }
 
     &__time {
-        margin-top: 1rem;
+        margin-top: 0.25rem;
 
         &--bottom {
             margin-top: 0.25rem;

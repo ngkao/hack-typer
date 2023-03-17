@@ -10,7 +10,8 @@ function App() {
   const [scoreData, setScoreData] = useState(null)
   const [templates, setTemplates] = useState(null)
   const [tempIndex, setTempIndex] = useState(1)
-  const [localHighScore, setLocalHighScore] = useState(0) 
+  const [localHighScore, setLocalHighScore] = useState(0)
+  const [score, setScore] = useState(null)
 
   const fetchScoreData = () => {
       axios.get(`http://localhost:8080/scores`)
@@ -28,6 +29,8 @@ function App() {
 }
 
 const cycleTemplate = () => {
+  setScore(null)
+  
   const numT = templates.length
   console.log(numT)
   if (tempIndex < numT-1) {
@@ -92,7 +95,7 @@ const cycleTemplate = () => {
   return (
     <div className="App">
       <section className="header">
-          <h1>HACKER TYPE</h1>
+          <h1 className='header__title'>HACKER TYPE</h1>
       </section>
       <TemplateField 
       templates={templates}
@@ -107,6 +110,8 @@ const cycleTemplate = () => {
         setShow={setShow}
         localHighScore={localHighScore}
         setLocalHighScore={setLocalHighScore}
+        score={score}
+        setScore={setScore}
       />
       <div className="toggle">
         <button className="toggle__btn" onClick={handleShow}>SHOW RESULTS</button>

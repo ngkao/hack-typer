@@ -8,10 +8,10 @@ import 'codemirror/mode/css/css';
 import {Controlled as ControlledEditor} from 'react-codemirror2';
 
 
-const Editor = ({language, value, onChange}) => {
+const Editor = ({language, value, onChange, hasStarted}) => {
 
     function handleChange(editor, data, value) {
-        onChange(value)
+            onChange(value)
         console.log(editor)
     }
 
@@ -19,6 +19,7 @@ const Editor = ({language, value, onChange}) => {
         <div className="editor">
             <ControlledEditor
                 onBeforeChange={handleChange}
+                
                 value={value}
                 className="editor__controller"
                 options={{

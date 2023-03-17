@@ -1,8 +1,5 @@
 import ScoreTableItem from '../ScoreTableItem/ScoreTableItem';
 import "./ScoreTable.scss"
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import InputField from '../InputField/InputField';
 
 const ScoreTable = ({scoreData}) => {
 
@@ -10,7 +7,7 @@ const ScoreTable = ({scoreData}) => {
     return (
         <>
             <div className='score-table'>
-                <h2 className="score-table__title">Score Table</h2>
+                <h2 className="score-table__title">Score Leaderboard</h2>
                 <div className="score-table__outline">
                     <div className="score-table__heading-ctr">
                         <h3>NAME</h3>

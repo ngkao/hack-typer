@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Editor from "../Editor/Editor";
 
-const InputField = ({fetchData, numWords, templates, setShow}) => {
+const InputField = ({fetchData, numWords, templates, setShow, localHighScore, setLocalHighScore, score, setScore}) => {
 
     // const [input, setInput] = useState();
     const [hasStarted, setHasStarted] = useState(false)
     const [startTime, setStartTime] = useState(null)
     const [timeTaken, setTimeTaken] = useState(null)
-    const [score, setScore] = useState(null)
+    
     const [borderClass, setBorderClass] = useState('input__btn')
 
       // Editor
@@ -19,9 +19,9 @@ const InputField = ({fetchData, numWords, templates, setShow}) => {
 
     let templateChar = totalChar.replaceAll(' ','')
 
-    console.log("TemplateCount", templateChar.length)
+    // console.log("TemplateCount", templateChar.length)
     let editorChar = ((editor.replaceAll(' ','')).length) - (templates.lines.length - 1)
-    console.log("editorChar", editorChar)
+    // console.log("editorChar", editorChar)
 
     // console.log(input)
 
@@ -40,10 +40,9 @@ const InputField = ({fetchData, numWords, templates, setShow}) => {
                 setTimeTaken(Math.round((Date.now() - startTime)/10)/100)
                 setHasStarted(false)
                 setEditor('')
-                console.log('valid')
                 setBorderClass('input__btn')
+                
             } else {
-                console.log('invalid')
                 setBorderClass('input__btn input__btn--wrong')
                 setTimeout(console.log(borderClass), 100)
             }
@@ -86,11 +85,19 @@ const InputField = ({fetchData, numWords, templates, setShow}) => {
     useEffect((() => {
         if (timeTaken) {
             setScore(Math.round(numWords/timeTaken * 60))
+            
         } else {
             setScore(null)
         }
-    }), [timeTaken, numWords])
+    }), [timeTaken, numWords, setScore])
 
+    useEffect((() => {
+        if (score>localHighScore) {
+            setLocalHighScore(score)
+        } else if (score===0) {
+            setLocalHighScore(0)
+        }
+    }), [score, localHighScore, setLocalHighScore])
     
 
     return (
@@ -105,13 +112,14 @@ const InputField = ({fetchData, numWords, templates, setShow}) => {
                         value={input} 
                         className='input__box'>
                     </textarea> */}
-                      <Editor 
-                        // language="xml"
-                        // language="css"
-                        language="javascript"
-                        onChange={setEditor}
-                        value={editor}
-                    />
+                    
+                    <Editor 
+                         language="javascript"
+                         onChange={setEditor}
+                         value={editor}
+
+                         hasStarted={hasStarted}
+                     />
                     <button className={borderClass}>START/STOP</button>
                     
                     

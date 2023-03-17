@@ -1,7 +1,7 @@
 import "./TemplateField.scss"
 // import { useState } from 'react'
 
-const TemplateField = ({templates, tempIndex, cycleTemplate}) => {
+const TemplateField = ({templates, tempIndex, cycleTemplate, localHighScore}) => {
 
     // const [currentLine, setCurrentLine] = useState(0)
 
@@ -30,11 +30,12 @@ const TemplateField = ({templates, tempIndex, cycleTemplate}) => {
 
     return (
         <>  
-            <button onClick={cycleTemplate} className='input__btn'>NEXT TEMPLATE</button>
+            
             <section className="score">
-                <h2 className="score__heading">SCORE</h2>
-                <p className="score__number">100</p>
+                <h2 className="score__heading">YOUR HIGH SCORE</h2>
+                <p className="score__number">{localHighScore}</p>
             </section>
+            <button onClick={cycleTemplate} className='input__btn input__btn--next'>NEXT PROGRAM</button>
             <section className="template">
                 <h2 className='template__heading'>TYPE THIS PROGRAM</h2>
                 <article className='template__box'>
