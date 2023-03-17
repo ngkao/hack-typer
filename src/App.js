@@ -41,11 +41,9 @@ function App() {
   })
   }
 
-
   useEffect(()=>{
     if (show == true) {
       scrollToBottom()
-      // scrollBottom()
     } else {
       scrollToTop();
     }
@@ -58,9 +56,8 @@ function App() {
 
   const handleHide = () => {
     setShow(false);
-   
-   
   }
+
 
   if (!scoreData) {
     return <h3>Loading..</h3>

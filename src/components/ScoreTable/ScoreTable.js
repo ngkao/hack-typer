@@ -7,16 +7,8 @@ import InputField from '../InputField/InputField';
 const ScoreTable = ({scoreData}) => {
 
 
-    // //Hide and Show Score Table
-    // const [show, setShow] = useState(true);
-
-
     return (
         <>
-            {/* <div className="toggle">
-                <button onClick={()=>setShow(true)}>SHOW RESULTS</button>
-                <button onClick={()=>setShow(false)}>HIDE RESULTS</button>
-            </div> */}
             <div className='score-table'>
                 <h2 className="score-table__title">Score Table</h2>
                 <div className="score-table__outline">

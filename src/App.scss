@@ -5,7 +5,6 @@
   margin: 0;
   padding: 0;
   font-family: "Golos";
-  // font-weight: 400;
 }
 
 html {
@@ -15,9 +14,6 @@ html {
 .App {
   min-height: 1150px;
   padding-bottom: 100px;
-  // margin-bottom: 800px;
-  outline: 3px dashed purple;
-
 }
 
 .header {
@@ -25,7 +21,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px 0;
+  padding: 10px 0;
   font-size: 30px;
   font-weight: 600;
   outline: 1px solid rgb(128, 100, 0);
@@ -33,7 +29,7 @@ html {
 }
 
 .toggle {
-  margin-top: 70px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   gap: 10px;

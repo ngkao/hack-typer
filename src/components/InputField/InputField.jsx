@@ -1,6 +1,7 @@
 import "./InputField.scss"
 import { useState } from "react";
 import axios from "axios";
+import Editor from "../Editor/Editor";
 
 const InputField = ({fetchData}) => {
 
@@ -9,7 +10,7 @@ const InputField = ({fetchData}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Send", input)
+        console.log("Send", input, editor)
 
         // On the Submit will trigger the score calc
 
@@ -27,27 +28,33 @@ const InputField = ({fetchData}) => {
             event.target.reset()
     }
 
-
+      // Editor
+    const [editor, setEditor] = useState('');
+    console.log("HTML", editor)
 
     return (
-        <>
             <section className="input">
                 <form 
                     className='input__form'
                     onSubmit={handleSubmit}
                 >
                     <label className='input__heading'>INPUT FIELD</label>
-                    <textarea 
+                    {/* <textarea 
                         onChange={(event) => {setInput(event.target.value)}} 
                         value={input} 
                         className='input__box'>
-                    </textarea>
+                    </textarea> */}
+                      <Editor 
+                        // language="xml"
+                        // language="css"
+                        language="javascript"
+                        onChange={setEditor}
+                        value={editor}
+                    />
                     <button className='input__btn'>START/STOP</button>
                 </form>
 
             </section>
-
-        </>
     );
 };
 
