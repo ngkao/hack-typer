@@ -43,6 +43,21 @@ const InputField = ({fetchData, numWords}) => {
         }
     }
 
+    function resetScore() {
+        
+        axios.put(`http://localhost:8080/scores`,
+        {
+            name: "NG",
+            score: score
+        })
+        .then(() => {
+            console.log("PUT (RESET) Request")
+            fetchData()
+        })
+        .catch((error) => console.log(error))
+    
+    }
+
     useEffect((() => {
         if (timeTaken) {
             setScore(Math.round(numWords/timeTaken * 60))
@@ -76,6 +91,7 @@ const InputField = ({fetchData, numWords}) => {
                     />
                     <button className='input__btn'>START/STOP</button>
                     <button onClick={publishScore} type="button" className='input__btn'>PUBLISH SCORE</button>
+                    <button onClick={resetScore} type="button" className='input__btn'>RESET SCORES</button>
                 </form>
                 {(hasStarted)&&
                 <>
