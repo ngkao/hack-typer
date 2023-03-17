@@ -8,8 +8,9 @@ import { useEffect, useState } from 'react';
 function App() {
 
   const [scoreData, setScoreData] = useState(null)
+  const [templates, setTemplates] = useState(null)
 
-  const fetchData = () => {
+  const fetchScoreData = () => {
       axios.get(`http://localhost:8080/scores`)
           .then((response) => {
               setScoreData(response.data)
@@ -17,8 +18,16 @@ function App() {
           .catch((error) => console.log(error))
   }
 
+  const getTemplates = () => {
+    axios.get(`http://localhost:8080/templates`)
+        .then((response) => {
+            setTemplates(response.data)
+        })
+}
+
   useEffect(() => {
-      fetchData();
+      fetchScoreData();
+      getTemplates();
   },[])
 
 
@@ -38,8 +47,16 @@ function App() {
   })
   }
 
+  const getNumWords = (lines) => {
+    let acc = 0
+    lines.forEach((line) => {
+      acc += line.length
+    })
+    return acc/5
+  }
+
   useEffect(()=>{
-    if (show == true) {
+    if (show === true) {
       scrollToBottom()
     } else {
       scrollToTop();
@@ -56,7 +73,7 @@ function App() {
   }
 
 
-  if (!scoreData) {
+  if (!scoreData || !templates) {
     return <h3>Loading..</h3>
   }
 
@@ -65,9 +82,12 @@ function App() {
       <section className="header">
           <h1>APP NAME</h1>
       </section>
-      <TemplateField />
+      <TemplateField 
+      templates={templates}
+      />
       <InputField
-        fetchData={fetchData}
+        fetchData={fetchScoreData}
+        numWords={getNumWords(templates[1].lines)}
       />
       <div className="toggle">
         <button className="toggle__btn" onClick={handleShow}>SHOW RESULTS</button>

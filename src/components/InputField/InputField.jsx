@@ -3,18 +3,26 @@ import { useState } from "react";
 import axios from "axios";
 import Editor from "../Editor/Editor";
 
-const InputField = ({fetchData}) => {
+const InputField = ({fetchData, numWords}) => {
 
-    const [input, setInput] = useState();
-    console.log(input)
+    // const [input, setInput] = useState();
+    const [hasStarted, setHasStarted] = useState(false)
+    const [startTime, setStartTime] = useState(null)
+    const [timeTaken, setTimeTaken] = useState(null)
+
+    // console.log(input)
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Send", input, editor)
+        // console.log("Send", input, editor)
 
-        // On the Submit will trigger the score calc
-
-        axios.post(`http://localhost:8080/scores`,
+        if (hasStarted === false) {
+            setStartTime(Date.now())
+            setTimeTaken(null)
+            setHasStarted(true)
+        } else {
+            // On the Submit will trigger the score calc
+            axios.post(`http://localhost:8080/scores`,
             {
                 name: "NG",
                 score: 100
@@ -26,11 +34,16 @@ const InputField = ({fetchData}) => {
             })
             .catch((error) => console.log(error))
             event.target.reset()
+            setTimeTaken(Math.round((Date.now() - startTime)/10)/100)
+            setHasStarted(false)
+        }
+
+        
     }
 
       // Editor
     const [editor, setEditor] = useState('');
-    console.log("HTML", editor)
+    // console.log("HTML", editor)
 
     return (
             <section className="input">
@@ -53,7 +66,16 @@ const InputField = ({fetchData}) => {
                     />
                     <button className='input__btn'>START/STOP</button>
                 </form>
-
+                {(hasStarted)&&
+                <>
+                    <p className="input__time">Timer started. GO GO GO!</p>
+                </>}
+                {(timeTaken)&&
+                <>
+                    <p className="input__time">Time taken: {timeTaken} sec</p>
+                    <p className="input__time input__time--bottom">{`Score (WPM): ${Math.round(numWords/timeTaken * 60)}`}</p>
+                </>
+                }
             </section>
     );
 };

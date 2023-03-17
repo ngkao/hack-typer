@@ -43,4 +43,12 @@
             color: white;
         }
     }
+
+    &__time {
+        margin-top: 1rem;
+
+        &--bottom {
+            margin-top: 0.25rem;
+        }
+    }
 }
