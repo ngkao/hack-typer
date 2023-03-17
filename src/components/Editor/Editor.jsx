@@ -12,6 +12,7 @@ const Editor = ({language, value, onChange}) => {
 
     function handleChange(editor, data, value) {
         onChange(value)
+        console.log(editor)
     }
 
     return (

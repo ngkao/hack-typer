@@ -43,7 +43,7 @@ const InputField = ({fetchData, numWords}) => {
 
       // Editor
     const [editor, setEditor] = useState('');
-    // console.log("HTML", editor)
+    console.log("HTML", editor[0])
 
     return (
             <section className="input">
