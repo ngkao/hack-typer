@@ -5,9 +5,6 @@ import TemplateField from './components/TemplateField/TemplateField';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-
-
-
 function App() {
 
   const [scoreData, setScoreData] = useState(null)
