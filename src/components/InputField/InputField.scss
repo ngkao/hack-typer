@@ -1,5 +1,9 @@
 .input {
-    height: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
 
     &__heading {
         font-size: 20px;
@@ -12,13 +16,64 @@
         flex-direction: column;
     }
 
+
     &__box {
         height: 100px;
         width: 600px;
+        resize: none;
+        padding: 1rem;
+        font-family: "Golos";
+        font-weight: 400;
+        font-size: 16px;
+        box-shadow: -10px 10px 0px 0px rgba(33,33,33,0.4);
+        outline: 1px solid black;
+        border: 1px solid black;
+    }
+
+    &__btn-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+    }
+
+    &__name-field {
+        height: 40px;
+        border-radius: 0.25rem;
+        margin: 1rem;
+        padding: 0 1rem;
+        width: 10rem;
     }
 
     &__btn {
+        padding: 0 2rem;
+        margin: 1rem;
         height: 40px;
-        margin-top: 20px;
+        box-shadow: -10px 10px 0px 0px rgba(33,33,33,1);
+        outline: 1px solid black;
+        border: 1px solid black;
+        cursor: pointer;
+
+        &:hover {
+            transition: 0.5s;
+            background-color: black;
+            color: white;
+        }
+
+        &--wrong {
+            border: 0.25rem solid red;
+        }
+
+        &--next {
+            margin-left: 31rem;
+        }
+    }
+
+    &__time {
+        margin-top: 0.25rem;
+
+        &--bottom {
+            margin-top: 0.25rem;
+        }
     }
 }
