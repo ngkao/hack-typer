@@ -1,5 +1,7 @@
 import ScoreTableItem from '../ScoreTableItem/ScoreTableItem';
 import "./ScoreTable.scss"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const ScoreTable = () => {
 
