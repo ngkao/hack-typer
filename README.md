@@ -1,3 +1,3 @@
-We developed Hack-typer to assist those learning programming to gain speed with typing code syntax. The idea is to perform multiple repetitions of coding to develop muscle memory for key sequences that are specific to coding, that other typing tutors don't quite incorporate.
+Hack Typer is a typing tool designed to help programmers improve their coding speed and accuracy through muscle memory repetition. Its unique feature focuses on coding-specific key sequences, setting it apart from other typing tutors.
 
-!Demo(../src/assets/demo/Hack-typer.gif)
+![Demo](../src/assets/demo/Hack-typer.gif)
